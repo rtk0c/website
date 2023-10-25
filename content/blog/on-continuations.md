@@ -32,11 +32,48 @@ which is indeed fascinating, though now _how_ it works and _why_ seem to hide th
 
 But enough babbling about, let's jump in:
 
-As we know, in assembly land (so that means C and its ancestors and descendents), function calls happen through the callstack and a few registers. Inside some place, let's say the function `foo()`, we decide to call another function `bar()`, so we push all the parameters onto the same, and then jump to the first instruction of `bar()`.
+As we know, in assembly land, function calls happen through the callstack and a few registers. Inside some place, let's say the function `foo()`, we decide to call another function `bar()`, so we push all the parameters onto the same, and then jump to the first instruction of `bar()`.
 
-<!-- TODO diagram -->
+```
+The Callstack
++----------------+
+| <variables>    |                   --+
++----------------+                     |
+| <return value> |                     |-- frame for bar()
++----------------+                     |
+| foo(): 0xA3    | <- return address --+
++----------------+
+| <variables>    |                   --+
++----------------+                     |
+| <return value> |                     |-- frame for foo()
++----------------+                     |
+| main(): 0x1E   | <- return address --+
++----------------+
+|       .        |
+|       .        |
+|       .        |
+```
+
+**Theofanis:** Yes, that seems to make sense, now that you talk about. I do seem to recollect about this.
+_hesitating, for he being a JavaScript programmer by trade doesn't quite have the C model on top of his head_
+
+**Asimoula:** And so as you see, when we return from `bar()`, for hypothetically, we place the return value at a predetermined location, and read the "return address" from another predetermined location, and `jmp` to it. The frame of `bar()` is now free reign for anybodty else to write on top of.[^calling-convention] In particular that return address points to a special chunk inside the assembly of `foo()`, that takes care of things after `call`ing `bar()`. But the details are unimportant for us right now.
+
+**Theofanis:** Right.
+
+**Asimoula:** Now if you take your hand, and cover up the part of the stack for variables of `bar()` and its babbage, and squint your eyes a little bit, so might realize a magical thing that seems to be happening here: for all we know, Deina who works on `bar()` has just wrote a few bytes into `<return value>` and `jmp`ed to another address at `[rsp+4]`, and he seem to have magically teleported to a place where the blinking lights and whistling crowd resumes into motion, in middle of `foo()`.
+
+**Theofanis:** That does seem sort of magical, if you put such metaphors and _literacy_ on top of it.
+
+**Asimoula:** Right-- all I'm really saying is, by doing these two things--reading and writing a few values to a fixed location (relative to the stack pointer, of course), and `jmp`ing, we can in essense _resume_ to a place in time.
+
+**Theofanis:** That is right, but do not see how it is useful. How does that make function calls special?
+
+// TODO, make generalization of "what if we can jump to any of the previous functions" and "what if we can jump to some _historical_ functions"
 
 
 [^refs]: If you, the reader, is really coming here confused, reading these existing tutorials is probably just going to make you more confused. Do it at your own risk (or benefit).
 
 [^demonic-breathe]: What I mean by this is `setjmp`/`longjmp` traditionally have a bad reputation among programmers, that it allows non-local control flow ("goto considered harmful"), and also
+
+[^calling-convention]: These are all made up for the convenience for the demonstration. I don't remember if any real calling convetions work in this exact way, but even if they do, things like parameters, register spillage, and stack pointer handling are omitted here. Don't take it too seriously.
