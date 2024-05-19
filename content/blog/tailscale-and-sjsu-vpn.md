@@ -75,7 +75,11 @@ default via 192.168.1.1 dev wlp1s0 proto dhcp src 192.168.1.142 metric 600
 ... rest are omitted ...
 ```
 
-Each line here is a routing rule. They rules take priority from highest on top, to lowest on bottom. The first line, `default via 10.40.25.168 dev tun0`, means that if the destination IP address doesn't match anything below ("default"), send it to the device `tun0` ("dev tun0"). The 2nd line is the normal rule for my local WiFi connection (internet traffic goes to the router). The 3rd, 4th, and 5th lines all come from openconnect. 3rd says if the destination IP is in the `10.40.16.0/20` subnet, send it over `tun0`;  even if this rule didn't exist, packets going to the whole SJSU LAN subnet will be caught by the first rule, so it's unnecessary<sup>citation needed</sup>. 4th says if the destination IP is exactly `130.65.8.242`, which is SJSU's VPN sever, send it over my actual WiFi interface ("dev wlp1s0"); 5th is a duplicate but with a higher *metric*. I'm not sure why it writes these rules with so much redundency.
+Each line here is a routing rule. They rules take priority not by their order, but by how specific they are. They more specific (longer the *subnet prefix*), the higher priority it has.
+
+*Subnet prefix* length is the number of bits in the subnet mask. For example, `10.0.0.0/8`'s prefix is length is 8, so it's *less specific* than `10.40.16.0/20`, which has 20 bits. See [your favorite search engine for more](https://www.google.com/search?client=firefox-b-1-d&q=subnet+prefix) if you're curious—the details don't matter here.
+
+The first line, `default via 10.40.25.168 dev tun0`, means that if the destination IP address doesn't match anything below ("default"), send it to the device `tun0` ("dev tun0"). The 2nd line is the normal rule for my local WiFi connection (internet traffic goes to the router). The 3rd, 4th, and 5th lines all come from openconnect. 3rd says if the destination IP is in the `10.40.16.0/20` subnet, send it over `tun0`;  even if this rule didn't exist, packets going to the whole SJSU LAN subnet will be caught by the first rule, so it's unnecessary<sup>citation needed</sup>. 4th says if the destination IP is exactly `130.65.8.242`, which is SJSU's VPN sever, send it over my actual WiFi interface ("dev wlp1s0"); 5th is a duplicate but with a higher *metric*. I'm not sure why it writes these rules with so much redundency.
 
 *Metric* is a number indicating the cost of a route. The higher this number, the less likely the kernel will consider it if other options exist.
 
