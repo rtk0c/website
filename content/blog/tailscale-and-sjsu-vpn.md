@@ -1,6 +1,6 @@
 ---
 title: "Setting up SJSU VPN for connection to home server"
-draft: true
+date: 2024-05-01T23:34:13-07:00
 ---
 
 Note this intended for relative networking novices, so I will try to explain every term used. Skip over them if you find it verbose. If you don't care about anything else and just wants to replicate my setup for your home server, go to [this section](#my-journey). Read the TL;DR's in there if that section alone is too long for you too.
