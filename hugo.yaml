@@ -1,0 +1,56 @@
+baseURL: "https://rtk0c.pages.dev/"
+languageCode: "en-us"
+title: "rtk0c's hut"
+theme: "PaperMod"
+
+outputs:
+  home:
+    # Gotta read them somehow
+    - HTML
+    # Go get a RSS client (and some quality blogs), you will not regret it
+    - RSS
+    # For fastsearch.json
+    - JSON
+
+languages:
+  en:
+    languageName: "English"
+    weight: 1
+    taxonomies:
+      category: categories
+      tag: tags
+      series: series
+    menu:
+      main:
+        - name: Posts
+          url: /archives
+          weight: 5
+        - name: Search
+          url: /search
+          weight: 10
+        - name: GitHub
+          url: https://github.com/rtk0c
+
+params:
+  env: development
+  description: "Some interesting stuff, hopefully"
+  keywords: [Blog, Portfolio]
+  author: rtk0c
+
+  defaultTheme: auto
+  disableThemeToggle: false
+  ShowShareButtons: false
+  ShowReadingTime: false
+  displayFullLangName: true
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowRssButtonInSectionTermList: true
+  ShowAllPagesInArchive: true
+  ShowPageNums: true
+  ShowToc: true
+
+  homeInfoParams:
+    Title: "rtk0c's hut"
+    Content: >
+      Something
