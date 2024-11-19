@@ -30,6 +30,10 @@ languages:
           weight: 10
         - name: GitHub
           url: https://github.com/rtk0c
+    homeInfoParams:
+      Title: "rtk0c's hut"
+      Content: >
+        Technical findings, life stories, and projects. I hope there's at least some interesting stuff in here.
 
 params:
   env: development
@@ -49,8 +53,3 @@ params:
   ShowAllPagesInArchive: true
   ShowPageNums: true
   ShowToc: true
-
-  homeInfoParams:
-    Title: "rtk0c's hut"
-    Content: >
-      Something
