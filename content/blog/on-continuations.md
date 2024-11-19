@@ -12,14 +12,20 @@ draft: true
 
 ```scheme
 > (define cont '())
-> (+ 5 (* 12 (- 3 (* 3 7)) (call/cc (lambda (cc) (set! cont cc) 4))))
--859
-> (cont 1)
--211
+> (+ (/ 12 2)
+     (* (+ 1 1)
+        (call/cc (lambda (cc) (set! cont cc) 4))))
+;; As if the (call/cc) part is just the constant 4
+;; (which we returned at in the lambda)
+14
+> (cont 1) 
+;; As if we've evaluated the original expression, but with the (call/cc) part
+;; replaced with the constant 1
+8
 > (cont 2)
--427
+10
 > (cont 4)
--859
+14
 ```
 
 which is indeed fascinating, though now _how_ it works and _why_ seem to hide themselves even further in the thick fog. [Calling them](http://community.schemewiki.org/?call-with-current-continuation-for-C-programmers) `setjmp`/`longjmp` makes perfect and clear sense, but at the cost of summoning a satan while blasting its putruid demonic breathe all over your face[^demonic-breathe]. What's more, everybody seems so inclined to mention this thing called "Continuation-Passing Style", which are mostly followed by some nonsensical rewriting of perfectly fine programs to pass [callbacks](https://stackoverflow.com/a/14022348) everywhere.
