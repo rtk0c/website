@@ -28,7 +28,7 @@ My home server is running Linux. You can very much accomplish the same thing on 
 What I need to do is basically two things. (1) Setup Cisco Anyconnect on my home server. (2) Make it so that only the LAN subnet goes through the VPN, not all internet traffic. (I don't need to pretend, for example github.com, to be coming from SJSU's network). Number (2) is technically optional but a nice to have.
 
 ## Setting up the VPN
-TL;DR: I used (`openconnect-sso`)[https://github.com/vlaci/openconnect-sso] on my browser to generate the VPN session token, and copy that to my home server over ssh, and launch OpenConnect with said token. This is because SJSU's account needs to authenticate with Okta/Duo, and that needs a browser.
+TL;DR: I used [`openconnect-sso`](https://github.com/vlaci/openconnect-sso) on my browser to generate the VPN session token, and copy that to my home server over ssh, and launch OpenConnect with said token. This is because SJSU's account needs to authenticate with Okta/Duo, and that needs a browser.
 
 I can either use Cisco's official Linux software, or use a 3rd-party, open source reimplementation like [OpenConnect](https://www.infradead.org/openconnect/). I _strongly_ prefered the latter since Cisco's official software wants me to download a blob of bash script to do installation, in addition to downloading another "Cisco Secure Desktop" executable from the internet, and running it locally on running.
 
