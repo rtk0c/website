@@ -53,3 +53,8 @@ params:
   ShowAllPagesInArchive: true
   ShowPageNums: true
   ShowToc: true
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
