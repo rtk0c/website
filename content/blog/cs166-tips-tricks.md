@@ -1,6 +1,7 @@
 ---
 title: "Tips and tricks: CS 166 Information Security taught by Mark Stamp"
 date: 2025-03-04T12:14:54-08:00
+tags: ["SJSU"]
 ---
 
 # Chapter 5

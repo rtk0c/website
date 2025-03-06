@@ -1,6 +1,7 @@
 ---
 title: "Adventures on server setup without a monitor"
 date: 2024-11-18T21:41:35-08:00
+tags: ["networking"]
 ShowToc: false
 ---
 

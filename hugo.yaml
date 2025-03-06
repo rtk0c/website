@@ -8,6 +8,7 @@ outputs:
     # Gotta read them somehow
     - HTML
     # Go get a RSS client (and some quality blogs), you will not regret it
+    # Hugo defaults to /index.xml, but if want to change: https://discourse.gohugo.io/t/how-can-i-change-the-rss-url/118/23
     - RSS
     # For fastsearch.json
     - JSON
@@ -24,6 +25,9 @@ languages:
       main:
         - name: Posts
           url: /archives
+          weight: 5
+        - name: RSS
+          url: /index.xml
           weight: 5
         - name: Search
           url: /search
@@ -53,6 +57,10 @@ params:
   ShowAllPagesInArchive: true
   ShowPageNums: true
   ShowToc: true
+
+taxonomies:
+  category: categories
+  tag: tags
 
 markup:
   goldmark:
