@@ -32,12 +32,16 @@ languages:
         - name: Search
           url: /search
           weight: 10
-        - name: GitHub
-          url: https://github.com/rtk0c
-    homeInfoParams:
-      Title: "rtk0c's hut"
-      Content: >
-        Technical findings, life stories, and projects. I hope there's at least some interesting stuff in here.
+    params:
+      homeInfoParams:
+        Title: "rtk0c's hut"
+        Content: >
+          Technical findings, life stories, and projects. I hope there's at least some interesting stuff in here.
+  zh:
+    params:
+      homeInfoParams:
+        Title: "rtk0c的小窝"
+        Content: >
 
 params:
   env: development
@@ -45,11 +49,19 @@ params:
   keywords: [Blog, Portfolio]
   author: rtk0c
 
+  socialIcons:
+  - name: "github"
+    url: "https://github.com/rtk0c"
+  - name: "reddit"
+    url: "http://reddit.com/u/rtk0c"
+  - name: "twitter"
+    url: "https://x.com/rtk0c1"
+
   defaultTheme: auto
   disableThemeToggle: false
+  displayFullLangName: true
   ShowShareButtons: false
   ShowReadingTime: false
-  displayFullLangName: true
   ShowPostNavLinks: true
   ShowBreadCrumbs: true
   ShowCodeCopyButtons: true
