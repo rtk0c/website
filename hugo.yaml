@@ -20,14 +20,13 @@ languages:
     taxonomies:
       category: categories
       tag: tags
-      series: series
     menu:
       main:
-        - name: Posts
-          url: /archives
-          weight: 5
         - name: RSS
           url: /index.xml
+          weight: 10
+        - name: Archive
+          url: /archives
           weight: 5
         - name: Search
           url: /search
@@ -36,7 +35,7 @@ languages:
       homeInfoParams:
         Title: "rtk0c's hut"
         Content: >
-          Technical findings, life stories, and projects. I hope there's at least some interesting stuff in here.
+          Technical findings, life stories, and projects.
   zh:
     params:
       homeInfoParams:
@@ -45,7 +44,7 @@ languages:
 
 params:
   env: development
-  description: "Some interesting stuff, hopefully"
+  description: "rtk0c's personal writing output"
   keywords: [Blog, Portfolio]
   author: rtk0c
 
@@ -53,9 +52,9 @@ params:
   - name: "github"
     url: "https://github.com/rtk0c"
   - name: "reddit"
-    url: "http://reddit.com/u/rtk0c"
+    url: "https://reddit.com/u/rtk0c"
   - name: "twitter"
-    url: "https://x.com/rtk0c1"
+    url: "https://twitter.com/rtk0c1"
 
   defaultTheme: auto
   disableThemeToggle: false
@@ -69,10 +68,6 @@ params:
   ShowAllPagesInArchive: true
   ShowPageNums: true
   ShowToc: true
-
-taxonomies:
-  category: categories
-  tag: tags
 
 markup:
   goldmark:
