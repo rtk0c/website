@@ -1,6 +1,6 @@
 ---
 title: "Tips and tricks: CS 166 Information Security taught by Mark Stamp"
-date: 2025-03-04T12:14:54-08:00
+date: 2025-05-13T15:27:00-07:00
 tags: ["SJSU"]
 ---
 
@@ -150,3 +150,32 @@ FYI, `cut` is used to strip the address column from the string.
 The given `stegoRead.c` and `stego.c` is using `fopen(2)` in text mode, and CRT on Windows _may_ expand byte sequence 0A (\n) to 0D 0A (\r\n). I'm honestly not sure when it decides to do that.
 
 Add `b` to the mode of all instances of `fopen(...)`. For example, change `fopen(outfname, "w")` into `fopen(outfname, "wb")`
+
+# Chapter 12
+Remember to use your favorite search engine to learn. The internet exists for a reason.
+
+## Your OS
+All the programs provided here are Windows PECOFF executables.
+
+If you have macOS/Linux, they should all work just fine in Wine (or variants it thereof). You may also grab a Windows VM to run them if Wine doesn't work somehow. Do consider using an under version, e.g. XP or 7 just so it's lighter on the resource usage. (Remember to disconnect internet to the VM if you are using an old Windows!)
+
+## x86 assembly
+You'll need a basic understanding of x86 32-bit assembly for this chapter. Very little is required, so whatever you know above another assembly should be transferable.
+
+General tip 0: x86 assembly has 2 syntax flavors, AT&T and Intel. Internet resources may use either, just be ware. GCC and whatnot by default produces AT&T syntax (🤮); if you see lots of % everywhere, or things like `movq` it's this. The textbook and all the reverse engineering tools use Intel syntax (💖 as they should); if you see square brackets `[rip+32h]` or bare `mov`'s, it's this.
+
+General tip 1: `je`/`jz` and `jne`/`jnz` are the same instructions, just different mnemonics. You can always replace either with an unconditional `jmp` in place, they have the same encoding length.
+
+General tip 2: `test reg1,reg2` means taking a bitwise AND, and set zero/carry flags accordingly. `xor reg1,reg1` is a convenient, 2 byte instruction that zeros any register.
+
+General tip 3: almost all the string literals are contained in the `.rdata` section.
+
+General tip 4: `rip` is the instruction pointer. Your debugger probably has a "set `rip` here" function to jump around.
+
+## The program just exits immediately after I type something
+Basically, when you double click to open a .exe that's a [Console program](https://stackoverflow.com/questions/574911), Windows only keeps the terminal open for as long as the program is running. Since the program exits right after it prints the last thing, it'll "exit immediately after I type something".
+
+The proper way to do this is open a Cmd or Powershell window, run the .exe from inside like `path/to/my/program.exe`.
+This is exactly the same thing as running a command-line program on macOS or Linux: you open Terminal.app, Konsole, Gnome Terminal or whatever, and type `/path/to/my/program`
+
+To save you some head scratching: Note that in Powershell supports `cd D:/path/to/my/folder` directly, but Cmd you have to **type `D:` on it's own to switch drive**, followed by a separate command `cd D:/path/to/my/folder` to change directory in that drive.
