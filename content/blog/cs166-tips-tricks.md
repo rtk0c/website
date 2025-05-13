@@ -61,6 +61,42 @@ The MinGW project has a [list of notable distros](https://www.mingw-w64.org/down
 I would have linked something instead of writing this myself, but I literally can't find anything of good quality on the internet...
 {{< /details >}}
 
+## x86 Static Analysis
+
+Some assignments ask you to disassemble and understand what a program is doing. For this—as is explained in Chapter 12 of the 3rd ed. textbook—you will need a disassembler that turns the bytes in the executable into assembly code.
+
+I am talking specifically about the offline disassembly and analysis functions. [They also do debugging](#x86-dynamic-analysis).
+
+I recommend **Ghidra** because that's what I use.
+Realistically, for the things you'll do in this class, either choice will work just fine.
+Similarly, comments below are targeted to use for this class. They're are shallow on purpose.
+
+- [Ghidra](https://ghidra-sre.org). Completely free and open-source. Looks kind of ugly but once you get over that and interaction logic, it's good.
+
+- [ ] [IDA Pro](https://hex-rays.com/ida-pro). Slightly closer eye candy. The built-in pattern matching works slightly better. Lots of people like it, so it (must also be) good. _This costs money_, there is a [free version](https://hex-rays.com/ida-free) but it doesn't come with a decompiler... not good.
+
+  According to legend, alfs who have passed the great challenge will be rewarded a completely legitimate, legal way of using IDA Pro. Let the brave thus sail forth.
+
+- [Binary Ninja](https://binary.ninja). Apparently this is a thing so I'm including it here for completeness, never used, never heard until today, no remarks.
+
+None of these are intuitive, so  please consult the respective _manuals_ and youtube _tutorial videos_ copiously. I shall not provide any guidance here because this blog will turn into the thickness of _Critique of Pure Reason_ or something.
+
+## x86 Dynamic Analysis
+
+Do note that all the tools above can also do debugging. Perfectly capable for the job for this class.
+
+I really like [x64dbg](https://x64dbg.com) (which does both x86\_32 and x86\_64). For reference, the 3rd edition of the textbook recommends [OllyDbg](https://www.ollydbg.de) (32-bit only), but it doesn't receive updates anymore, so it won't be as much of a transferable skill. It'll still work great though.
+
+## Java Decompiler
+
+As of the writing of this blog, I shall claim FernFlower is the best Java decompiler available._<sub>runs<sub><sub>don't slap me don't slap me</sub></sub></sub>_
+
+Admittedly, I'm biased because I worked on Minecraft modding for a while, and Fernflower is what the whole community settled on... anyways!
+
+It's bundled in **IntelliJ IDEA**. You can just open any .class file and it will decompile.
+
+It's also available as a **CLI tool**. If you're going this route, consider using one of the forks that grew from the Minecraft modding efforts, such as [Vineflower](https://vineflower.org). It's not going to matter for whatever you'll be doing in this class, but support their efforts!
+
 # Chapter 5
 ## Problem 4 - hash collision
 Hint: the expected answer _is not_ the exact solution. That's way too complicated
