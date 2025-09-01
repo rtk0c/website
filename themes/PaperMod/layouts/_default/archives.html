@@ -27,6 +27,10 @@
   {{- end }}
 </header>
 
+<div class="post-content">
+{{ .Content }}
+</div>
+
 {{- $pages := where site.RegularPages "Type" "in" site.Params.mainSections }}
 
 {{- if site.Params.ShowAllPagesInArchive }}
